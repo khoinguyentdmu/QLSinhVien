@@ -1,11 +1,9 @@
 package com.example.demo3.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "tbl_subject")
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

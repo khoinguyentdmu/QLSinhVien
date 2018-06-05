@@ -1,0 +1,571 @@
+-> Đầu tiên clone project về sau đó cấu hình lại thông số database cho phù hợp.
+-> Bật dùng maven để run.
+-> Bật postman để test.
+
+Lấy danh sách tất cả sinh viên
+URL
+
+/student/
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+None
+
+Success Response:
+
+    {
+    "id": 13,
+    "name": "Nguyen Van C",
+    "studentClassID": 4,
+    "dateOfBirth": "1997-10-09T17:00:00.000+0000"
+}
+
+Error Response:
+
+None
+
+Sample Call: http://127.0.0.1:8080/student/
+
+----------------------------------------------------
+Lấy thông tin của một sinh viên
+URL
+
+/student/:id
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+id = [Integer]
+
+Data Params
+
+None
+
+Success Response:
+
+    {
+    "id": 13,
+    "name": "Nguyen Van C",
+    "studentClassID": 4,
+    "dateOfBirth": "1997-10-09T17:00:00.000+0000"
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T10:05:01.061+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "Unable to find com.example.demo3.Model.Student with id 41213",
+    "path": "/student/41213"
+}
+
+Sample Call: http://127.0.0.1:8080/student/41
+
+----------------------------------------------------
+
+
+
+Thêm một sinh viên
+
+URL
+
+/student/
+
+Method:
+
+POST
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+{
+	"name" : [String],
+	"studentClassID" : [Int],
+	"dateOfBirth":"dd/MM/yyyy"
+}
+
+Success Response:
+
+    {
+    "id": 13,
+    "name": "Nguyen Van C",
+    "studentClassID": 4,
+    "dateOfBirth": "1997-10-09T17:00:00.000+0000"
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T09:43:48.475+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "For input string: \"4s\"",
+    "path": "/student"
+}
+
+Sample Call: http://127.0.0.1:8080/student/
+Body: {
+	"name" : "Nguyen Van C",
+	"studentClassID" : "4s",
+	"dateOfBirth":"10/10/1997"
+}
+----------------------------------------------------
+
+
+Sửa thông tin 1 sinh viên
+
+URL
+
+/student/:id
+
+Method:
+
+PUT
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+{
+	"name" : [String],
+	"studentClassID" : [Int],
+	"dateOfBirth":"dd/MM/yyyy"
+}
+
+Success Response:
+
+    {
+    "id": 13,
+    "name": "Nguyen Van C",
+    "studentClassID": 4,
+    "dateOfBirth": "1997-10-09T17:00:00.000+0000"
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T09:43:48.475+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "For input string: \"4s\"",
+    "path": "/student"
+}
+
+Sample Call: http://127.0.0.1:8080/student/2
+Body: {
+	"name" : "Nguyen Van C",
+	"studentClassID" : "4s",
+	"dateOfBirth":"10/10/1997"
+}
+----------------------------------------------------
+Xóa một sinh viên
+
+URL
+
+/student/:id
+
+Method:
+
+DELETE
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+None
+
+Success Response:
+
+true
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T09:48:39.184+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "No class com.example.demo3.Model.Student entity with id 13 exists!",
+    "path": "/student/13"
+}
+
+Sample Call: http://127.0.0.1:8080/student/13
+----------------------------------------------------
+
+Lấy danh sách tất cả môn học
+URL
+
+/subject/
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+None
+
+Success Response:
+
+[
+    {
+        "id": 24,
+        "name": "1"
+    },
+    {
+        "id": 17,
+        "name": "Nguyen Van F"
+    }
+]
+
+Error Response:
+
+None
+
+Sample Call: http://127.0.0.1:8080/subject/
+
+----------------------------------------------------
+
+
+Thêm một môn học
+
+URL
+
+/subject/
+
+Method:
+
+POST
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+{
+	"name" : [String],
+}
+
+Success Response:
+
+{
+    "id": 32,
+    "name": "dfs"
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T09:58:52.603+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "could not execute statement; nested exception is org.hibernate.exception.GenericJDBCException: could not execute statement",
+    "path": "/subject"
+}
+
+Sample Call: http://127.0.0.1:8080/subject/
+Body: {
+	"name": "hello"
+}
+----------------------------------------------------
+
+
+Sửa thông tin 1 môn học
+
+URL
+
+/subject/:id
+
+Method:
+
+PUT
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+{
+	"name" : [String]
+}
+
+Success Response:
+
+{
+    "id": 33,
+    "name": "dfds"
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T10:02:03.699+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "Unable to find com.example.demo3.Model.Subject with id 332",
+    "path": "/subject/332"
+}
+
+Sample Call: http://127.0.0.1:8080/subject/332
+Body: {
+	"name" : "dfds"
+}
+----------------------------------------------------
+Xóa 1 môn học
+
+URL
+
+/subject/:id
+
+Method:
+
+DELETE
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+None
+
+Success Response:
+
+true
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T10:03:03.655+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "No class com.example.demo3.Model.Subject entity with id 332 exists!",
+    "path": "/subject/332"
+}
+Sample Call: http://127.0.0.1:8080/subject/332
+
+----------------------------------------------------
+
+Lấy danh sách tất cả lớp
+URL
+
+/studentClass/
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+None
+
+Success Response:
+
+[
+    {
+        "id": 44,
+        "name": "D15PM02",
+        "monitor": "Nguyen Van A"
+    },
+    {
+        "id": 45,
+        "name": "D15PM02",
+        "monitor": "Nguyen Van A"
+    },
+    {
+        "id": 46,
+        "name": "D15PM02",
+        "monitor": "Nguyen Van A"
+    }
+]
+
+Error Response:
+
+None
+
+Sample Call: http://127.0.0.1:8080/studentClass
+----------------------------------------------------
+
+Thêm một lớp
+
+URL
+
+/studentClass/
+
+Method:
+
+POST
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+{
+	"name" : [String],
+	"monitor" : [String]
+}
+
+Success Response:
+
+{
+    "id": 46,
+    "name": "D15PM02",
+    "monitor": "Nguyen Van A"
+}
+
+Error Response:
+
+None
+
+Sample Call: http://127.0.0.1:8080/studentClass
+Body: {
+	"name" : "D15PM02",
+	"monitor" : "Nguyen Van A"
+}
+----------------------------------------------------
+
+
+Sửa thông tin 1 lớp
+
+URL
+
+/subject/:id
+
+Method:
+
+PUT
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+{
+	"name" : [String],
+	"monitor" : [String]
+}
+
+Success Response:
+
+{
+    "id": 33,
+    "name": "dfds"
+}{
+	"name" : "D15PM02",
+	"monitor" : "Nguyen Van A"
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T10:12:41.922+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "Unable to find com.example.demo3.Model.StudentClass with id 46213",
+    "path": "/studentClass/46213"
+}
+
+Sample Call: http://127.0.0.1:8080/studentClass/46213
+Body: {
+	"name" : "D15PM02",
+	"monitor" : "Nguyen Van A"
+}
+----------------------------------------------------
+Xóa 1 lớp
+URL
+
+/subject/:id
+
+Method:
+
+DELETE
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+None
+
+Success Response:
+
+true
+
+Error Response:
+
+{
+    "timestamp": "2018-06-05T10:13:20.413+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "Unable to find com.example.demo3.Model.StudentClass with id 46213",
+    "path": "/studentClass/46213"
+}
+
+Sample Call: http://127.0.0.1:8080/studentClass/46213
+----------------------------------------------------
+
+E đang tìm hiểu để map các model lại với nhau nên làm tới đây....
+
+
+
+
+
+
