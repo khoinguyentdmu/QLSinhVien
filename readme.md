@@ -562,7 +562,7 @@ Error Response:
 Sample Call: http://127.0.0.1:8080/studentClass/46213
 ----------------------------------------------------
 
-Thêm điểm
+Thêm điểm (Dùng để demo)
 
 URL
 
