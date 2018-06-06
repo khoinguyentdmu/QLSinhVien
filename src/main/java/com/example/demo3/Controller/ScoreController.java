@@ -6,6 +6,7 @@ import com.sun.corba.se.impl.logging.InterceptorsSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -33,28 +34,34 @@ public class ScoreController {
         return score2;
     }
     //Dang lam
-/*
+
     //Lay thong tin tat ca diem
     @GetMapping("")
     public List<Score> index(){
-        return studentClassRepository.findAll();
+        return scoreRepository.findAll();
     }
 
-    //Sua 1 thong tin lop
+    //Lay danh sach diem dua theo ma mon hoc
+    @GetMapping("/subject/{id}")
+    public List<Score> getScoreBySubjectID(@PathVariable String id){
+        int subjectID =Integer.parseInt(id);
+        return scoreRepository.findBySubjectID(subjectID);
+    }
+
+    //Sua thong tin diem
     @PutMapping("/{id}")
-    public StudentClass update(@PathVariable String id, @RequestBody Map<String, String> body){
-        int studentClassID = Integer.parseInt(id);
-        StudentClass studentClass = studentClassRepository.getOne(studentClassID);
-        studentClass.setName(body.get("name"));
-        studentClass.setMonitor(body.get("monitor"));
-        return studentClassRepository.save(studentClass);
+    public Score update(@PathVariable String id, @RequestBody Map<String, String> body){
+        int scoreID = Integer.parseInt(id);
+        Score score = scoreRepository.getOne(scoreID);
+        score.setScore(Integer.parseInt(body.get("score")));
+        return scoreRepository.save(score);
     }
 
-    //Xoa mon hoc
-    @DeleteMapping("score/{id}")
+    //Xoa diem mon hoc
+    /*@DeleteMapping("/{id}")
     public boolean delete(@PathVariable String id){
-        int studentClassID = Integer.parseInt(id);
-        studentClassRepository.deleteById(studentClassID);
+        int scoreID = Integer.parseInt(id);
+        scoreRepository.deleteById(scoreID);
         return true;
     }*/
 }

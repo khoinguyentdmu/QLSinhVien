@@ -562,6 +562,149 @@ Error Response:
 Sample Call: http://127.0.0.1:8080/studentClass/46213
 ----------------------------------------------------
 
+Thêm điểm
+
+URL
+
+/score/
+
+Method:
+
+POST
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+{
+	"studentID" : [INT],
+	"subjectID" : [INT],
+	"score" : [INT]
+}
+
+Success Response:
+
+{
+    "id": 11,
+    "studentID": 9,
+    "subjectID": 2,
+    "score": 2
+}
+
+Error Response:
+
+None
+
+http://127.0.0.1:8080/score
+Body: {
+	"studentID" : "9",
+	"subjectID" : "2",
+	"score" : "2"
+}
+----------------------------------------------------
+Lấy danh sách điểm
+
+URL
+
+/score/subject/:id
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+None
+
+Data Params
+
+NONE
+
+Success Response:
+
+[
+    {
+        "id": 4,
+        "studentID": 5,
+        "subjectID": 2,
+        "score": 2
+    },
+    {
+        "id": 5,
+        "studentID": 6,
+        "subjectID": 2,
+        "score": 2
+    },
+    {
+        "id": 11,
+        "studentID": 9,
+        "subjectID": 2,
+        "score": 2
+    }
+]
+
+Error Response:
+
+None
+
+Sample call: http://127.0.0.1:8080/score/subject/2
+None
+----------------------------------------------------
+
+
+
+Sửa điểm
+
+URL
+
+/subject/:id
+
+Method:
+
+PUT
+
+URL Params
+
+Required:
+
+id = [Int]
+
+Data Params
+
+{
+	"score" : [INT]
+}
+
+Success Response:
+
+{
+    "id": 11,
+    "studentID": 9,
+    "subjectID": 2,
+    "score": 10
+}
+
+Error Response:
+
+{
+    "timestamp": "2018-06-06T02:05:08.483+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "Unable to find com.example.demo3.Model.Score with id 11213",
+    "path": "/score/11213"
+}
+
+Sample Call: http://127.0.0.1:8080/score/11
+Body: {
+	"score" : "10"
+}
+
 E đang tìm hiểu để map các model lại với nhau nên làm tới đây....
 
 
