@@ -23,12 +23,32 @@ None
 
 Success Response:
 
+[
     {
-    "id": 13,
-    "name": "Nguyen Van C",
-    "studentClassID": 4,
-    "dateOfBirth": "1997-10-09T17:00:00.000+0000"
-}
+        "studentID": 30,
+        "student_classid": 10,
+        "monitor": "Nguyen Van A",
+        "student_Name": "Nguyen Van C",
+        "student_class_name": "D15HT01",
+        "date_of_birth": "2018-06-06T10:06:26.000+0000"
+    },
+    {
+        "studentID": 34,
+        "student_classid": 33,
+        "monitor": "Pham Nguyen Khang",
+        "student_Name": "Nguyen Van Huu",
+        "student_class_name": "D15HT02",
+        "date_of_birth": "1997-10-09T17:00:00.000+0000"
+    },
+    {
+        "studentID": 35,
+        "student_classid": 33,
+        "monitor": "Pham Nguyen Khang",
+        "student_Name": "Le Bao Thinh",
+        "student_class_name": "D15HT02",
+        "date_of_birth": "2018-06-06T08:58:53.000+0000"
+    }
+]
 
 Error Response:
 
@@ -566,7 +586,7 @@ Thêm điểm (Dùng để demo)
 
 URL
 
-/score/
+/score
 
 Method:
 
@@ -610,7 +630,7 @@ Lấy danh sách điểm
 
 URL
 
-/score/subject/:id
+/score
 
 Method:
 
@@ -630,22 +650,20 @@ Success Response:
 
 [
     {
-        "id": 4,
-        "studentID": 5,
-        "subjectID": 2,
-        "score": 2
+        "id": 39,
+        "subject_id": 38,
+        "subject_name": "Toan A3",
+        "student_id": 30,
+        "student_name": "Nguyen Van C",
+        "score": 4
     },
     {
-        "id": 5,
-        "studentID": 6,
-        "subjectID": 2,
-        "score": 2
-    },
-    {
-        "id": 11,
-        "studentID": 9,
-        "subjectID": 2,
-        "score": 2
+        "id": 41,
+        "subject_id": 36,
+        "subject_name": "Toan A1",
+        "student_id": 30,
+        "student_name": "Nguyen Van C",
+        "score": 0
     }
 ]
 
@@ -656,7 +674,6 @@ None
 Sample call: http://127.0.0.1:8080/score/subject/2
 None
 ----------------------------------------------------
-
 
 
 Sửa điểm
@@ -705,8 +722,98 @@ Body: {
 	"score" : "10"
 }
 
-E đang tìm hiểu để map các model lại với nhau nên làm tới đây....
+----------------------------------------------------
+Loc cac sinh vien theo mon hoc 
 
+URL
+
+/score/subject/:id
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+id = [INT]
+
+Data Params
+
+NONE
+
+Success Response:
+
+[
+    {
+        "id": 41,
+        "subject_id": 36,
+        "subject_name": "Toan A1",
+        "student_id": 30,
+        "student_name": "Nguyen Van C",
+        "score": 0
+    }
+]
+
+Error Response:
+
+{
+    "timestamp": "2018-06-06T10:46:04.611+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "For input string: \"36sd\"",
+    "path": "/score/subject/36sd"
+}
+
+Sample Call: http://127.0.0.1:8080/score/subject/36
+
+----------------------------------------------------
+Loc cac sinh vien theo khoang diem [a..b]
+
+URL
+
+/score/filter
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+NONE
+
+Data Params
+{
+	"minVal" : [INT],
+	"maxVal" : [INT]
+}
+
+Success Response:
+[
+    {
+        "id": 39,
+        "subject_id": 38,
+        "subject_name": "Toan A3",
+        "student_id": 30,
+        "student_name": "Nguyen Van C",
+        "score": 4
+    }
+]
+
+Error Response:
+
+{
+    "timestamp": "2018-06-06T10:48:45.915+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "null",
+    "path": "/score/filter"
+}
+
+Sample Call: http://127.0.0.1:8080/score/filter
 
 
 

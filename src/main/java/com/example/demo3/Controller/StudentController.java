@@ -1,6 +1,9 @@
 package com.example.demo3.Controller;
 
+import com.example.demo3.Model.DetailedStudent;
 import com.example.demo3.Model.Student;
+import com.example.demo3.Model.StudentClass;
+import com.example.demo3.Repository.DetailedStudentRepository;
 import com.example.demo3.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +21,19 @@ public class StudentController {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    DetailedStudentRepository detailedStudentRepository;
+
     //Lay danh sach sinh vien
-    @GetMapping("")
+    /*@GetMapping("")
     public List<Student> index(){
         return studentRepository.findAll();
+    }*/
+
+    //Lay danh sach sinh vien
+    @GetMapping("")
+    public List<DetailedStudent> testIndex(){
+        return detailedStudentRepository.findDetailedAll();
     }
 
     //Lay thong tin sinh vien dua theo id
@@ -32,6 +44,7 @@ public class StudentController {
         Student student2 = new Student(student1);
         return student2;
     }
+
 
     //Tao moi mot sinh vien
     @PostMapping("")
@@ -57,6 +70,14 @@ public class StudentController {
         Student student = studentRepository.getOne(studentID);
         student.setName(body.get("name"));
         student.setStudentClassID(Integer.parseInt(body.get("studentClassID")));
+        Date dateOfBirth = new Date();
+        try {
+            dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(body.get("dateOfBirth"));
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        student.setDateOfBirth(dateOfBirth);
         return studentRepository.save(student);
     }
 

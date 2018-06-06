@@ -9,8 +9,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-
     private int studentClassID;
+    private Date dateOfBirth;
 
     public int getStudentClassID() {
         return studentClassID;
@@ -20,21 +20,11 @@ public class Student {
         this.studentClassID = studentClassID;
     }
 
-    private Date dateOfBirth;
-
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Student() {  }
-
-    public Student(String name, int studentClassID, Date dateOfBirth) {
-        this.name = name;
-        this.studentClassID = studentClassID;
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -52,6 +42,14 @@ public class Student {
 
     public void setName(String title) {
         this.name = title;
+    }
+
+    public Student() {  }
+
+    public Student(String name, int studentClassID, Date dateOfBirth) {
+        this.name = name;
+        this.studentClassID = studentClassID;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Student(Student student){

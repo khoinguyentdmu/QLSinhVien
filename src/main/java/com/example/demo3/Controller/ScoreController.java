@@ -1,6 +1,8 @@
 package com.example.demo3.Controller;
 
+import com.example.demo3.Model.DetailedScore;
 import com.example.demo3.Model.Score;
+import com.example.demo3.Repository.DetailedScoreRepository;
 import com.example.demo3.Repository.ScoreRepository;
 import com.sun.corba.se.impl.logging.InterceptorsSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.Map;
 public class ScoreController {
     @Autowired
     ScoreRepository scoreRepository;
+    @Autowired
+    DetailedScoreRepository detailedScoreRepository;
 
     //Tao diem
     @PostMapping("")
@@ -33,19 +37,18 @@ public class ScoreController {
         Score score2 = new Score(score1);
         return score2;
     }
-    //Dang lam
 
     //Lay thong tin tat ca diem
     @GetMapping("")
-    public List<Score> index(){
-        return scoreRepository.findAll();
+    public List<DetailedScore> index(){
+        return detailedScoreRepository.findDetailedAll();
     }
 
     //Lay danh sach diem dua theo ma mon hoc
     @GetMapping("/subject/{id}")
-    public List<Score> getScoreBySubjectID(@PathVariable String id){
-        int subjectID =Integer.parseInt(id);
-        return scoreRepository.findBySubjectID(subjectID);
+    public List<DetailedScore> getScoreBySubjectID(@PathVariable String id){
+        int subjectID = Integer.parseInt(id);
+        return detailedScoreRepository.findDetailedAllBySubjectID(subjectID);
     }
 
     //Sua thong tin diem
@@ -57,11 +60,20 @@ public class ScoreController {
         return scoreRepository.save(score);
     }
 
-    //Xoa diem mon hoc
-    /*@DeleteMapping("/{id}")
+    //Thong ke danh sach sinh vien theo khoang diem [minVal.. maxVal]
+    @PostMapping("/filter")
+    public List<DetailedScore> getScoreList(@RequestBody Map<String, String> body){
+        int minVal = Integer.parseInt(body.get("minVal"));
+        int maxVal = Integer.parseInt(body.get("maxVal"));
+        return detailedScoreRepository.findByScoreIsGreaterThanAndScoreLessThan(maxVal, minVal);
+    }
+
+
+    //Xoa diem mon hoc dung de test
+    @DeleteMapping("/{id}")
     public boolean delete(@PathVariable String id){
         int scoreID = Integer.parseInt(id);
         scoreRepository.deleteById(scoreID);
         return true;
-    }*/
+    }
 }
