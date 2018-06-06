@@ -663,7 +663,7 @@ Sửa điểm
 
 URL
 
-/subject/:id
+/score/:id
 
 Method:
 
